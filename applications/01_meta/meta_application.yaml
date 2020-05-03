@@ -14,7 +14,7 @@ spec:
   source:
     repoURL: https://github.com/chris-vest/argocd_workshop.git
     targetRevision: master
-    path: ./argocd/
+    path: ./applications/
 
     # directory
     directory:
