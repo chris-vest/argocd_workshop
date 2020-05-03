@@ -14,9 +14,28 @@ spec:
     targetRevision: 5.0.22
     helm:
       values: |-
+        admin:
+          existingSecret: "grafana-admin"
+
         sidecar:
           dashboards:
             enabled: true
+            label: grafana-dashboard
+            searchNamespace: ALL
+          datasources:
+            enabled: true
+            label: grafana-datasource
+            searchNamespace: ALL
+
+        datasources:
+          datasources.yaml:
+            apiVersion: 1
+            datasources:
+              - name: Prometheus
+                type: prometheus
+                url: http://prometheus-server.prometheus.cluster.svc.local
+                access: direct
+                isDefault: true
 
         dashboards:
           default:
