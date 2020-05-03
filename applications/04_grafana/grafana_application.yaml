@@ -19,8 +19,9 @@ spec:
             enabled: true
 
         dashboards:
-          argocd:
-            url: https://raw.githubusercontent.com/argoproj/argo-cd/master/examples/dashboard.json
+          default:
+            argocd:
+              url: https://raw.githubusercontent.com/argoproj/argo-cd/master/examples/dashboard.json
 
   syncPolicy:
     automated:
