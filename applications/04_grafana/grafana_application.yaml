@@ -47,7 +47,6 @@ spec:
               - name: Prometheus
                 type: prometheus
                 url: http://prometheus-server.prometheus.cluster.svc.local
-                access: direct
                 isDefault: true
 
         dashboards:
