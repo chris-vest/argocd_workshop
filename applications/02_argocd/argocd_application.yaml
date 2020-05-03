@@ -60,6 +60,7 @@ spec:
         configs:
           secret:
             createSecret: true
+            # This is naughty, don't do this in a real cluster
             admin.password: admin
             admin.passwordMtime: password
 
