@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana
+  namespace: default
+spec:
+  destination:
+    namespace: grafana
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: grafana
+    repoURL: https://kubernetes-charts.storage.googleapis.com/
+    targetRevision: 5.0.22
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
