@@ -25,6 +25,7 @@ spec:
           metrics:
             enabled: true
             service:
+              servicePort: 8082
               annotations:
                 prometheus.io/scrape: 'true'
                 prometheus.io/port: '8082'
@@ -44,6 +45,7 @@ spec:
           metrics:
             enabled: true
             service:
+              servicePort: 8082
               annotations:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "8082"
@@ -53,6 +55,7 @@ spec:
           metrics:
             enabled: true
             service:
+              servicePort: 8082
               annotations:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "8082"
