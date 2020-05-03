@@ -12,6 +12,12 @@ spec:
     chart: grafana
     repoURL: https://kubernetes-charts.storage.googleapis.com/
     targetRevision: 5.0.22
+    helm:
+      values: |-
+        sidecar:
+          dashboards:
+            enabled: true
+
   syncPolicy:
     automated:
       prune: true
