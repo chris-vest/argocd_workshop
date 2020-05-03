@@ -18,6 +18,9 @@ spec:
           dashboards:
             enabled: true
 
+        dashboards:
+          url: https://raw.githubusercontent.com/argoproj/argo-cd/master/examples/dashboard.json
+
   syncPolicy:
     automated:
       prune: true
