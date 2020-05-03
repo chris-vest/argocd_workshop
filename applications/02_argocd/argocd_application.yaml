@@ -48,17 +48,14 @@ spec:
               annotations:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "8083"
-                # prometheus.io/path: "/metrics"
         
         repoServer:
           metrics:
             enabled: true
             service:
-              servicePort: 8082
               annotations:
                 prometheus.io/scrape: "true"
-                prometheus.io/port: "8082"
-                # prometheus.io/path: "/metrics"
+                prometheus.io/port: "8084"
         
         configs:
           secret:
