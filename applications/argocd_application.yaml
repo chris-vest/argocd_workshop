@@ -1,0 +1,73 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  # default namespace because demo
+  namespace: default
+spec:
+  destination:
+    # default namespace because demo
+    namespace: default
+    # Local Kubernetes, i.e. your KinD cluster
+    server: https://kubernetes.default.svc
+  # default project because demo
+  project: default
+  # the source of our application
+  source:
+    # chart name in argo chart repository
+    chart: argo-cd
+    repoURL: https://argoproj.github.io/argo-helm
+    # latest revision of the chart, i.e. latest ArgoCD version
+    targetRevision: 2.2.11
+    helm:
+      values: |-
+        controller:
+          metrics:
+            enabled: true
+            service:
+              annotations:
+                prometheus.io/scrape: 'true'
+                prometheus.io/port: '8082'
+        
+        server:
+          config:
+            application.instanceLabelKey: argocd.argoproj.io/instance
+            repositories: |
+              - name: argo
+                type: helm
+                url: https://argoproj.github.io/argo-helm
+              - name: stable
+                type: helm
+                url: https://kubernetes-charts.storage.googleapis.com/
+            url: https://argocd.example.com
+          
+          metrics:
+            enabled: true
+            service:
+              annotations:
+                prometheus.io/scrape: "true"
+                prometheus.io/port: "8082"
+                prometheus.io/path: "/metrics"
+        
+        repoServer:
+          metrics:
+            enabled: true
+            service:
+              annotations:
+                prometheus.io/scrape: "true"
+                prometheus.io/port: "8082"
+                prometheus.io/path: "/metrics"
+        
+        configs:
+          secret:
+            createSecret: true
+            admin.password: admin
+            admin.passwordMtime: password
+
+  # syncronisation policy
+  syncPolicy:
+    automated:
+      # prune resources no longer in Git
+      prune: true
+      # if actual state differs from desired, a sync is triggered immediately
+      selfHeal: true

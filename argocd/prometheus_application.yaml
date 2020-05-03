@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: default
+spec:
+  destination:
+    namespace: prometheus
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: prometheus
+    repoURL: https://kubernetes-charts.storage.googleapis.com/
+    targetRevision: 11.1.3
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
