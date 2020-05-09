@@ -46,9 +46,9 @@ spec:
             datasources:
             - name: Prometheus
               type: prometheus
-              url: prometheus-server
+              url: http://prometheus-server
               access: proxy
-              isDefault: true
+              isDefault: false
 
         dashboards:
           default:
