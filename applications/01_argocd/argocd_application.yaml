@@ -42,6 +42,11 @@ spec:
                 url: https://kubernetes-charts.storage.googleapis.com/
             url: https://argocd.example.com
           
+          ingress:
+            enabled: true
+            annotations:
+              ingress.kubernetes.io/ssl-passthrough: "true"
+          
           metrics:
             enabled: true
             service:
