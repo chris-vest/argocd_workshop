@@ -20,7 +20,7 @@ If that doesn't work, use the following command:
 
 Apply ArgoCD Application file:
 
-`kubectl apply -f applications/01_argocd/argocd_application.yaml`
+`kubectl apply -f applications/02_argocd/argocd_application.yaml`
 
 Open it up and have a look at it while we discuss it.
 
