@@ -87,7 +87,7 @@ The Prometheus Application is now out of sync.
 
 ### Auto-sync
 
-Go to the [Application configuration we added for Prometheus](../applications/03_prometheus/prometheus_application.yaml). Uncomment and update `spec.syncPolicy.automated.prune` and `spec.syncPolicy.automated.selfHeal` to `true` (at the bottom of the file), commit and push to your repo.
+Go to the [Application configuration we added for Prometheus](../.applications/03_prometheus/prometheus_application.yaml). Uncomment and update `spec.syncPolicy.automated.prune` and `spec.syncPolicy.automated.selfHeal` to `true` (at the bottom of the file), commit and push to your repo.
 
 `git add applications/ && git commit -m "Update Prometheus Application" && git push`
 
