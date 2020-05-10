@@ -1,0 +1,61 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana
+  namespace: default
+spec:
+  destination:
+    namespace: prometheus
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    chart: grafana
+    repoURL: https://kubernetes-charts.storage.googleapis.com/
+    targetRevision: 5.0.22
+    helm:
+      values: |-
+        admin:
+          existingSecret: "grafana-admin"
+
+        sidecar:
+          dashboards:
+            enabled: true
+            label: grafana-dashboard
+            searchNamespace: ALL
+          datasources:
+            enabled: true
+            label: grafana-datasource
+            searchNamespace: ALL
+
+        dashboardProviders:
+          dashboardproviders.yaml:
+            apiVersion: 1
+            providers:
+            - name: 'default'
+              orgId: 1
+              folder: ''
+              type: file
+              disableDeletion: false
+              editable: true
+              options:
+                path: /var/lib/grafana/dashboards/default
+
+        datasources:
+          datasources.yaml:
+            apiVersion: 1
+            datasources:
+            - name: Prometheus
+              type: prometheus
+              url: http://prometheus-server
+              access: proxy
+              isDefault: false
+
+        dashboards:
+          default:
+            argocd:
+              url: https://raw.githubusercontent.com/argoproj/argo-cd/master/examples/dashboard.json
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

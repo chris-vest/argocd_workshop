@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prometheus
+  namespace: default
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  # Where we are deploying to
+  destination:
+    namespace: prometheus
+    server: https://kubernetes.default.svc
+  # Which project this Application belongs to
+  project: default
+  # Where this Application has its source
+  source:
+    # Helm specifc values
+    chart: prometheus
+    repoURL: https://kubernetes-charts.storage.googleapis.com/
+    targetRevision: 11.1.3
+  # # More on this later...
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true
