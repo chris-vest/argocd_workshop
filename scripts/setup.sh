@@ -12,8 +12,6 @@ helm repo update
 
 helm install argocd argo/argo-cd -f ./scripts/argocd.values.yaml
 
-helm install metrics-server stable/metrics-server --namespace kube-system
-
 kubectl create namespace prometheus
 
 kubectl create namespace helm-stable-only
