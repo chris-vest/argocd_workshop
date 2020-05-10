@@ -39,7 +39,11 @@ Let's look at the main ArgoCD configuration file:
 
 Open up the [meta-application](../applications/02_meta/meta_application.yaml) and update line 15 with _your own repo URL_ (if you haven't done so already). I.e. the URL to your forked repository.
 
+Now apply the meta-app Application:
+
 `kubectl apply -f applications/02_meta/meta_application.yaml`
+
+ArgoCD is now "watching" the `application` directory of your repository!
 
 ## 04 Prometheus
 
