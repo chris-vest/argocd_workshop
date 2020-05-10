@@ -37,15 +37,9 @@ Let's look at the main ArgoCD configuration file:
 
 ## 03 App of Apps
 
-Open up the [meta-application](../applications/02_meta/meta_application.yaml) and update line 15 with _your own repo URL_. I.e. the URL to your forked repository.
+Open up the [meta-application](../applications/02_meta/meta_application.yaml) and update line 15 with _your own repo URL_ (if you haven't done so already). I.e. the URL to your forked repository.
 
-Now let's move the "meta application" to our directory which ArgoCD will be watching:
-
-`cp -r .applications/02_meta applications/`
-
-Add to git & push:
-
-`git add applications/ && git commit -m "Add meta-app" && git push`
+`kubectl apply -f applications/02_meta/meta_application.yaml`
 
 ## 04 Prometheus
 
