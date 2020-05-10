@@ -1,0 +1,42 @@
+controller:
+  metrics:
+    enabled: true
+    service:
+      servicePort: 8082
+      annotations:
+        prometheus.io/scrape: 'true'
+        prometheus.io/port: '8082'
+
+server:
+  config:
+    application.instanceLabelKey: argocd.argoproj.io/instance
+    repositories: |
+      - name: argo
+        type: helm
+        url: https://argoproj.github.io/argo-helm
+      - name: stable
+        type: helm
+        url: https://kubernetes-charts.storage.googleapis.com/
+    url: https://argocd.example.com
+  
+  metrics:
+    enabled: true
+    service:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8083"
+
+repoServer:
+  metrics:
+    enabled: true
+    service:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8084"
+
+configs:
+  secret:
+    createSecret: true
+    # This is naughty, don't do this in a real cluster
+    admin.password: admin
+    admin.passwordMtime: password
