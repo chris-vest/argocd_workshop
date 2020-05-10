@@ -47,4 +47,10 @@ kubectl wait --for=condition=ready pod/$POD
 POD=$(kubectl get pod -n ingress-nginx -l app.kubernetes.io/component=controller -o jsonpath='{.items[0].metadata.name}')
 kubectl wait -n ingress-nginx --for=condition=ready pod/$POD
 
+kubectl -n default patch secret argocd-secret \
+  -p '{"stringData": {
+    "admin.password": "$2a$10$rRyBsGSHK6.uc8fntPwVIuLVHgsAhAX7TcdrqW/RADU0uh7CaChLa",
+    "admin.passwordMtime": "'$(date +%FT%T%Z)'"
+  }}'
+
 echo "You're ready to go!"

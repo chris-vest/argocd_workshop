@@ -8,6 +8,9 @@ controller:
         prometheus.io/port: '8082'
 
 server:
+  extraArgs:
+    - --insecure
+
   config:
     application.instanceLabelKey: argocd.argoproj.io/instance
     repositories: |
@@ -18,6 +21,11 @@ server:
         type: helm
         url: https://kubernetes-charts.storage.googleapis.com/
     url: https://argocd.example.com
+  
+  ingress:
+    enabled: true
+    annotations:
+      ingress.kubernetes.io/ssl-passthrough: "true"
   
   metrics:
     enabled: true
@@ -33,10 +41,3 @@ repoServer:
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "8084"
-
-configs:
-  secret:
-    createSecret: true
-    # This is naughty, don't do this in a real cluster
-    admin.password: admin
-    admin.passwordMtime: password

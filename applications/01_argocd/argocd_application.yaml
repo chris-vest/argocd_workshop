@@ -64,13 +64,6 @@ spec:
               annotations:
                 prometheus.io/scrape: "true"
                 prometheus.io/port: "8084"
-        
-        configs:
-          secret:
-            createSecret: true
-            # This is naughty, don't do this in a real cluster
-            admin.password: admin
-            admin.passwordMtime: password
 
   # syncronisation policy
   syncPolicy:

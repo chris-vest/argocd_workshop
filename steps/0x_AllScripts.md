@@ -16,6 +16,11 @@ If that doesn't work, use the following command:
 
 ...and visit http://localhost:8080
 
+Either way, credentials are as follows:
+
+Username: `admin`
+Password: `password`
+
 ### ArgoCD deploying itself
 
 Apply ArgoCD Application file:
