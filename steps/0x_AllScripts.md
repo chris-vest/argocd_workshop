@@ -12,7 +12,7 @@ Go to http://localhost - this is the ArgoCD UI
 
 If that doesn't work, use the following command:
 
-`kubectl port-forward svc/argocd-server 8080:80`
+`kubectl port-forward svc/argocd-server 8080:80 &> /dev/null &`
 
 ...and visit http://localhost:8080
 
@@ -61,7 +61,7 @@ Add to git & push:
 
 Let's start with port-forwarding to Prometheus:
 
-`kubectl port-forward svc/prometheus-server 8090:80 -n prometheus`
+`kubectl port-forward svc/prometheus-server 8090:80 -n prometheus &> /dev/null &`
 
 Now you can get to Prometheus at localhost:8090
 
@@ -101,7 +101,7 @@ Add to git & push:
 
 Once you see the Grafana application in ArgoCD, you can port-forward to it:
 
-`kubectl port-forward -n prometheus svc/grafana 9090:80`
+`kubectl port-forward -n prometheus svc/grafana 9090:80 &> /dev/null &`
 
 Go to Grafana at http://localhost:9090, you should have the ArgoCD dashboard there.
 
