@@ -41,11 +41,13 @@ do
       tcp-listen:${port},fork,reuseaddr tcp-connect:target:${node_port}
 done
 
+echo "Waiting for argocd-server..."
 POD=$(kubectl get pod -l app.kubernetes.io/name=argocd-server -o jsonpath='{.items[0].metadata.name}')
-kubectl wait --for=condition=ready pod/$POD
+kubectl wait --timeout 300s --for=condition=ready pod/$POD
 
+echo "Waiting for ingress-nginx-controller..."
 POD=$(kubectl get pod -n ingress-nginx -l app.kubernetes.io/component=controller -o jsonpath='{.items[0].metadata.name}')
-kubectl wait -n ingress-nginx --for=condition=ready pod/$POD
+kubectl wait --timeout 300s -n ingress-nginx --for=condition=ready pod/$POD
 
 kubectl -n default patch secret argocd-secret \
   -p '{"stringData": {
