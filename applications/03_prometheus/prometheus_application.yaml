@@ -18,8 +18,8 @@ spec:
     chart: prometheus
     repoURL: https://kubernetes-charts.storage.googleapis.com/
     targetRevision: 11.1.3
-  # # More on this later...
-  # syncPolicy:
-  #   automated:
-  #     prune: true
-  #     selfHeal: true
+  # More on this later...
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
