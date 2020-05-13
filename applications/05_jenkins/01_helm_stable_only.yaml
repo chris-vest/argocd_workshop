@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: helm-stable-only
+  namespace: default
+spec:
+  # Here we can limit the types of resources we allow
+  # users to create via this project
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  # Limit the destination cluster and namespace
+  # E.g. we can have a project which only allows
+  # "deployments" to a dev cluster in some namespace
+  destinations:
+  - namespace: 'helm-stable-only'
+    server: 'https://kubernetes.default.svc'
+  # Here we can limit the source repos for our project
+  # In this case we are only allowing the Helm Stable repo
+  sourceRepos:
+  - 'https://kubernetes-charts.storage.googleapis.com'
